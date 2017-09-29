@@ -19,7 +19,7 @@ $(document).ready(function(){
       secondMcSecondFace = "0"+secondMcSecondFace;
     }
     if(pm === true){
-      clockfacewhatever.innerText = hourMcHourFace + ":" +          minuteMcMinutesFace + ":" + secondMcSecondFace + " PM";
+      clockfacewhatever.innerText = hourMcHourFace + ":" + minuteMcMinutesFace + ":" + secondMcSecondFace + " PM";
     }
     else{
       clockfacewhatever.innerText = hourMcHourFace + ":" + minuteMcMinutesFace + ":" + secondMcSecondFace + " AM";
@@ -60,15 +60,43 @@ $(document).ready(function(){
       secondMcSecondFace = "0"+secondMcSecondFace;
     }
     if(pm === true){
-      clockfacewhatever.innerText = hourMcHourFace + ":" +          minuteMcMinutesFace + ":" + secondMcSecondFace + " PM GMT";
+      clockfacewhatever.innerText = hourMcHourFace + ":" + minuteMcMinutesFace + ":" + secondMcSecondFace + " PM GMT";
     }
     else{
       clockfacewhatever.innerText = hourMcHourFace + ":" + minuteMcMinutesFace + ":" + secondMcSecondFace + " AM GMT";
     }
   }
+  function getSS(){
+    var timeyMcTimeFace = new Date();
+    var timeofday = timeyMcTimeFace.getHours();
+    
+    if (timeofday >= 13 && timeofday < 18){
+      document.getElementById('setSS').setAttribute('href', 'afternoon.css');
+      //document.body.style.backgroundColor = "#ff7c0a";
+      console.log("afternoon");
+    }
+
+    else if (timeofday >= 6 && timeofday < 13){
+      document.getElementById('setSS').setAttribute('href', 'day.css');
+      //document.body.style.backgroundColor = "#80d4ea";
+      console.log("morning");
+    }
+
+    else if (timeofday >= 18 || timeofday < 6){
+      document.getElementById('setSS').setAttribute('href', 'night.css');
+      //document.body.style.backgroundColor = "#081b42";
+      console.log("night");
+    }
+    else{
+      document.getElementById('setSS').setAttribute('href', 'day.css');
+    }
+  }
+  //document.getElementById('setSS').setAttribute('href', 'night.css');
   setInterval(gmTime, 1000);
   setInterval(functionyMcFunctionFace, 1000);
+  getSS();
+  gmTime();
   functionyMcFunctionFace();
   offsetMcOffsetFace();
-  
+  setInterval(getSS, 60000);
 });
