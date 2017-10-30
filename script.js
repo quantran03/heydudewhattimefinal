@@ -6,10 +6,13 @@ $(document).ready(function(){
     var secondMcSecondFace = timeyMcTimeFace.getSeconds();
     var minuteMcMinutesFace = timeyMcTimeFace.getMinutes();
     var clockfacewhatever = document.getElementById('clock');
-    if(hourMcHourFace >12){
+    if(hourMcHourFace >11 && hourMcHourFace != 24 ){
       hourMcHourFace = hourMcHourFace-12;
       var pm = true;
-    } else {
+    } else if (hourMcHourFace == 24 ){
+      hourMcHourFace -= 12;
+      var pm = false;
+    }else{
       var pm = false;
     }
     if (minuteMcMinutesFace < 10){
@@ -47,10 +50,13 @@ $(document).ready(function(){
     var secondMcSecondFace = timeyMcTimeFace.getSeconds();
     var minuteMcMinutesFace = timeyMcTimeFace.getMinutes();
     var clockfacewhatever = document.getElementById('gmt');
-    if(hourMcHourFace >12){
+    if(hourMcHourFace >11 && hourMcHourFace != 24 ){
       hourMcHourFace = hourMcHourFace-12;
       var pm = true;
-    } else {
+    } else if (hourMcHourFace == 24 ){
+      hourMcHourFace -= 12;
+      var pm = false;
+    }else{
       var pm = false;
     }
     if (minuteMcMinutesFace < 10){
@@ -66,6 +72,7 @@ $(document).ready(function(){
       clockfacewhatever.innerText = hourMcHourFace + ":" + minuteMcMinutesFace + ":" + secondMcSecondFace + " AM GMT";
     }
   }
+
   function getSS(){
     var timeyMcTimeFace = new Date();
     var timeofday = timeyMcTimeFace.getHours();
@@ -100,3 +107,24 @@ $(document).ready(function(){
   offsetMcOffsetFace();
   setInterval(getSS, 60000);
 });
+$.get("http://ipinfo.io", function (response) {
+    $("#ip").html("IP: " + response.ip);
+    $("#address").html(response.city + ", " + response.country);
+    $.getJSON("http://api.apixu.com/v1/current.json?key=564f96b78db14dd5b3e141559173010&q=" + response.city,
+      function(weather){
+        iconlink = "http:" + weather.current.condition.icon;
+        console.log(weather);
+        console.log(weather.current);
+        $("#icon").html(
+          
+          "<img src = '" + iconlink + "' / >"
+        );
+        $("#condition").html(
+          "<h2> " + weather.current.condition.text + " </h2>"
+        );
+        $("#temp").html(
+          "<p>" + weather.current.temp_c + "&deg;C </p>"
+        )
+      });
+}, "jsonp");
+

@@ -45,3 +45,34 @@ h3{
     color: white;
     font-size: 30px;
 }
+#address{
+	height: 10px;
+    width: 600px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    padding-top: 500px;
+    font-family: courier, monospace;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+#condition{
+	font-family: courier, monospace;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding-top: 0px;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+#temp{
+	font-family: courier, monospace;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding-top: px;
+    top: 100; left: 0; bottom: 0; right: 0;
+}
+#icon{
+    text-align: center;
+}
