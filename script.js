@@ -107,12 +107,12 @@ $(document).ready(function(){
   offsetMcOffsetFace();
   setInterval(getSS, 60000);
 });
-$.get("http://ipinfo.io", function (response) {
+$.get("https://ipinfo.io", function (response) {
     $("#ip").html("IP: " + response.ip);
     $("#address").html(response.city + ", " + response.country);
-    $.getJSON("http://api.apixu.com/v1/current.json?key=564f96b78db14dd5b3e141559173010&q=" + response.city,
+    $.getJSON("https://api.apixu.com/v1/current.json?key=564f96b78db14dd5b3e141559173010&q=" + response.city,
       function(weather){
-        iconlink = "http:" + weather.current.condition.icon;
+        iconlink = "https:" + weather.current.condition.icon;
         console.log(weather);
         console.log(weather.current);
         $("#icon").html(
