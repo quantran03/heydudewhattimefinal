@@ -10,7 +10,7 @@ $(document).ready(function(){
       hourMcHourFace = hourMcHourFace-12;
       var pm = true;
     } else if (hourMcHourFace == 24 ){
-      hourMcHourFace -= 12;
+      hourMcHourFace = hourMcHourFace - 12;
       var pm = false;
     }else{
       var pm = false;
@@ -50,11 +50,17 @@ $(document).ready(function(){
     var secondMcSecondFace = timeyMcTimeFace.getSeconds();
     var minuteMcMinutesFace = timeyMcTimeFace.getMinutes();
     var clockfacewhatever = document.getElementById('gmt');
+	if(hourMcHourFace < 1){
+	  hourMcHourFace = 24-hourMcHourFace;
+	}
+	if(hourMcHourFace > 24){
+		hourMcHourFace = hourMcHourFace - 24;
+	}
     if(hourMcHourFace >11 && hourMcHourFace != 24 ){
       hourMcHourFace = hourMcHourFace-12;
       var pm = true;
     } else if (hourMcHourFace == 24 ){
-      hourMcHourFace -= 12;
+      hourMcHourFace = hourMcHourFace - 12;
       var pm = false;
     }else{
       var pm = false;
